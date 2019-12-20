@@ -12,12 +12,14 @@ export default class Chagua extends React.Component {
     onFormSubmit = e => {
         e.preventDefault();
         const input = document.getElementById('add-item');
-        this.setState({
-            items: [...this.state.items, {
-                value: input.value,
-                active: true
-            }]
-        });
+        if (input.value) {
+            this.setState({
+                items: [...this.state.items, {
+                    value: input.value,
+                    active: true
+                }]
+            });
+        }
         input.value = '';
     }
 
@@ -26,7 +28,7 @@ export default class Chagua extends React.Component {
         const items = this.state.items.filter(i => i.active);
         const len = items.length;
         if (len) {
-            const i = 0;
+            const i = Math.floor((Math.random() * len));
             this.setState({
                 selection: items[i].value
             });
