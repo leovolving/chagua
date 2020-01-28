@@ -3,7 +3,7 @@ import Form from './Form.jsx';
 import ItemList from './ItemList.jsx';
 import Selection from './Selection.jsx';
 
-export default class Chagua extends React.Component {
+class Chagua extends React.Component {
     state = {
         items: [],
         selection: null
@@ -45,3 +45,5 @@ export default class Chagua extends React.Component {
         );
     }
 }
+
+export default Chagua;
