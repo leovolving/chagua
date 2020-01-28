@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
     <form onSubmit={onSubmit}>
         <TextField className='input' id='add-item' label='Add item' name='add-item' />
         &nbsp;
-        <Button type='submit' color='primary' variant='outlined'>Submit</Button>
+        <Button type='submit' color='primary' variant='outlined'>Add</Button>
     </form>
 );
 
