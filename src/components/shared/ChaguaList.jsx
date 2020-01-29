@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 const getSecondaryText = lastSelected => lastSelected ? `Last selected ${moment(lastSelected).format("MMM D 'YY")}.` : 'Never selected.';
 
-const ItemList = ({items, onDeleteCallback, onToggleCallback}) => {
+const ChaguaList = ({items, onDeleteCallback, onToggleCallback}) => {
     const classes = useStyles();
     const getDisabledText = item => (
         <Fragment>
@@ -64,4 +64,4 @@ const ItemList = ({items, onDeleteCallback, onToggleCallback}) => {
     );
 }
 
-export default ItemList;
+export default ChaguaList;

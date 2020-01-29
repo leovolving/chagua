@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import ItemList from '../../ItemList.jsx';
+import ChaguaList from '../../shared/ChaguaList';
 import Typography from '@material-ui/core/Typography';
 
 const mockList = {
@@ -56,7 +56,7 @@ const mockList = {
     ]
 }
 
-class List extends React.Component {
+class ListPage extends React.Component {
     state = {
         items: mockList.items
     }
@@ -81,11 +81,11 @@ class List extends React.Component {
                     <Typography variant='h2'>{mockList.name}</Typography>
                 </header>
                 <section>
-                    <ItemList onDeleteCallback={this.onDelete} onToggleCallback={this.onToggle} items={items} />
+                    <ChaguaList onDeleteCallback={this.onDelete} onToggleCallback={this.onToggle} items={items} />
                 </section>
             </Fragment>
         );
     }
 }
 
-export default List;
+export default ListPage;

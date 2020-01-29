@@ -1,6 +1,6 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import ChaguaRouter from './components/ChaguaRouter.jsx'
+import ChaguaRouter from './components/ChaguaRouter'
 import green from '@material-ui/core/colors/green';
 import indigo from '@material-ui/core/colors/indigo';
 

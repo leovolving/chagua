@@ -5,8 +5,8 @@ import {
     Route,
     Link
   } from 'react-router-dom';
-  import Home from './routes/home/Home.jsx';
-  import List from './routes/list/List.jsx';
+  import HomePage from './routes/home/HomePage';
+  import ListPage from './routes/list/ListPage';
 
 const ChaguaRouter = () => (
     <Router>
@@ -15,11 +15,11 @@ const ChaguaRouter = () => (
 
         <Switch>
             <Route exact path='/list/:id'>
-                <List />
+                <ListPage />
             </Route>
 
             <Route path='/'>
-                <Home />
+                <HomePage />
             </Route>
         </Switch>
     </Router>

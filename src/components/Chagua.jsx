@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from './Form.jsx';
-import ItemList from './ItemList.jsx';
-import Selection from './Selection.jsx';
+import Form from './shared/Form.jsx';
+import ChaguaList from './shared/ChaguaList';
+import Selection from './shared/Selection';
 
 class Chagua extends React.Component {
     state = {
@@ -39,7 +39,7 @@ class Chagua extends React.Component {
         return (
             <React.Fragment>
                 <Form onSubmit={this.onFormSubmit} />
-                <ItemList items={this.state.items} />
+                <ChaguaList items={this.state.items} />
                 <Selection onClick={this.onSelect} selection={this.state.selection} />
             </React.Fragment>
         );

@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import Typography from '@material-ui/core/Typography';
-import Chagua from '../../Chagua.jsx'
+import Chagua from '../../Chagua'
 
-export default () => (
+const HomePage = () => (
     <Fragment>
         <header>
             <Typography variant='h1'>Chagua</Typography>
@@ -13,3 +13,5 @@ export default () => (
         </section>
     </Fragment>
 );
+
+export default HomePage;
