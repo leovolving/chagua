@@ -27,25 +27,25 @@ const useStyles = makeStyles(theme => ({
 
 const ChaguaListItem = ({actions, data, index}) => {
     const {onChangeTitleCallback, onDeleteCallback, onEditCallback, onToggleCallback} = actions;
-    const classes = useStyles();
     const {editing, enabled, lastSelected, title} = data;
+    const classes = useStyles();
 
     const onDelete = () => onDeleteCallback(index);
     const onEdit = () => onEditCallback(index);
     const onChangeTitle = value => onChangeTitleCallback(index, value)
     const onToggle = () => onToggleCallback(index);
 
-    const getSecondaryText = lastSelected => lastSelected
+    const secondaryText = lastSelected
         ? `Last selected ${moment(lastSelected).format("MMM D 'YY")}.`
         : 'Never selected.';
 
-    const getPrimaryText = item => editing
-        ? <ChaguaListItemTitleEdit onCancel={onEdit} onSubmit={onChangeTitle} title={title} />
-        : <ChaguaListItemTitle enabled={enabled} onEdit={onEdit} title={title} />
+    const primaryText = editing
+        ? <ChaguaListItemTitleEdit onSubmit={onChangeTitle} title={title} />
+        : <ChaguaListItemTitle enabled={enabled} onEdit={onEdit} title={title} />;
 
     return (
         <ListItem ContainerProps={{className: classes.listItem}} key={index}>
-            <ListItemText primary={getPrimaryText(data)} secondary={getSecondaryText(lastSelected)} />
+            <ListItemText primary={primaryText} secondary={secondaryText} />
             <ListItemSecondaryAction>
                 <IconButton edge='start' aria-label={enabled ? 'disable' : 'enable'} onClick={onToggle}>
                 {enabled

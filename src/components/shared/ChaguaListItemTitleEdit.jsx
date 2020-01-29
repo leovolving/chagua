@@ -1,7 +1,14 @@
 import React from 'react';
+import {withStyles} from '@material-ui/core/styles';
 import DoneIcon from '@material-ui/icons/Done';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+
+const styles = {
+    root: {
+        display: 'block'
+    }
+  }
 
 class ChaguaListItemTitleEdit extends React.Component {
 
@@ -20,13 +27,12 @@ class ChaguaListItemTitleEdit extends React.Component {
         onSubmit(value);
     }
     
-    render (){
-        const {onCancel} = this.props;
+    render () {
         const {value} = this.state;
         return (
-            <form onSubmit={this.handleSubmit} onCancel={onCancel}>
+            <form className={this.props.classes.root} onSubmit={this.handleSubmit}>
                 <TextField required id="item-title" label='Edit title' onChange={this.handleChange} value={value} />
-                <IconButton edge='end' aria-label='delete' type='submit'>
+                <IconButton edge='end' aria-label='submit' type='submit'>
                             <DoneIcon />
                 </IconButton>
             </form>
@@ -34,4 +40,4 @@ class ChaguaListItemTitleEdit extends React.Component {
     }
 }
 
-export default ChaguaListItemTitleEdit;
+export default withStyles(styles)(ChaguaListItemTitleEdit);

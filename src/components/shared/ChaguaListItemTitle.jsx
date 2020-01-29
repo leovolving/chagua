@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     disabledText: {
         color: theme.palette.error.main
     }
-  }));
+}));
 
 const ChaguaListItemTitle = ({enabled, onEdit, title}) => {
     const classes = useStyles();

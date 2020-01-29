@@ -94,7 +94,7 @@ class ListPage extends React.Component {
         this.setState({items});
     }
 
-    render(){
+    render() {
         const {items} = this.state;
         const actions = {
             onChangeTitleCallback: this.onChangeTitle,
