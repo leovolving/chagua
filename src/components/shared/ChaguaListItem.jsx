@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -8,6 +8,8 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import ChaguaListItemTitle from './ChaguaListItemTitle';
+import ChaguaListItemTitleEdit from './ChaguaListItemTitleEdit';
 
 const useStyles = makeStyles(theme => ({
     disabledText: {
@@ -23,27 +25,27 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
-const ChaguaListItem = ({data, index, onDeleteCallback, onToggleCallback}) => {
+const ChaguaListItem = ({actions, data, index}) => {
+    const {onChangeTitleCallback, onDeleteCallback, onEditCallback, onToggleCallback} = actions;
     const classes = useStyles();
-    const {enabled, lastSelected} = data;
+    const {editing, enabled, lastSelected, title} = data;
 
     const onDelete = () => onDeleteCallback(index);
+    const onEdit = () => onEditCallback(index);
+    const onChangeTitle = value => onChangeTitleCallback(index, value)
     const onToggle = () => onToggleCallback(index);
 
     const getSecondaryText = lastSelected => lastSelected
         ? `Last selected ${moment(lastSelected).format("MMM D 'YY")}.`
         : 'Never selected.';
 
-    const getDisabledText = item => (
-        <Fragment>
-            {item.title}
-            {!item.enabled && <span className={classes.disabledText}> - disabled</span>}
-        </Fragment>
-    );
+    const getPrimaryText = item => editing
+        ? <ChaguaListItemTitleEdit onCancel={onEdit} onSubmit={onChangeTitle} title={title} />
+        : <ChaguaListItemTitle enabled={enabled} onEdit={onEdit} title={title} />
 
     return (
         <ListItem ContainerProps={{className: classes.listItem}} key={index}>
-            <ListItemText primary={getDisabledText(data)} secondary={getSecondaryText(lastSelected)} />
+            <ListItemText primary={getPrimaryText(data)} secondary={getSecondaryText(lastSelected)} />
             <ListItemSecondaryAction>
                 <IconButton edge='start' aria-label={enabled ? 'disable' : 'enable'} onClick={onToggle}>
                 {enabled
@@ -52,7 +54,7 @@ const ChaguaListItem = ({data, index, onDeleteCallback, onToggleCallback}) => {
                 }
                 </IconButton>
                 <IconButton edge='end' aria-label='delete' onClick={onDelete}>
-                <DeleteForeverIcon />
+                    <DeleteForeverIcon />
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>

@@ -9,49 +9,57 @@ const mockList = {
             id: '11',
             lastSelected: null,
             title: 'Toronto',
-            enabled: true
+            enabled: true,
+            editing: false
         },
         {
             id: '12',
             lastSelected: '2020-01-29T00:07:11.687Z',
             title: 'Seattle',
-            enabled: false
+            enabled: false,
+            editing: false
         },
         {
             id: '13',
             lastSelected: '2020-01-09T07:07:11.687Z',
             title: 'Houston',
-            enabled: true
+            enabled: true,
+            editing: false
         },
         {
             id: '14',
             lastSelected: null,
             title: 'Chicago',
-            enabled: false
+            enabled: false,
+            editing: false
         },
         {
             id: '15',
             lastSelected: '2020-01-09T07:07:11.687Z',
             title: 'Miami',
-            enabled: true
+            enabled: true,
+            editing: false
         },
         {
             id: '16',
             lastSelected: '2020-01-29T00:07:11.687Z',
             title: 'Philadelphia',
-            enabled: false
+            enabled: false,
+            editing: false
         },
         {
             id: '17',
             lastSelected: null,
             title: 'Denver',
-            enabled: true
+            enabled: true,
+            editing: false
         },
         {
             id: '18',
             lastSelected: null,
             title: 'Oakland',
-            enabled: false
+            enabled: false,
+            editing: false
         }
     ]
 }
@@ -61,9 +69,22 @@ class ListPage extends React.Component {
         items: mockList.items
     }
 
+    onChangeTitle = (index, value) => {
+        const [...items] = this.state.items;
+        items[index].title = value;
+        this.setState({items});
+        this.onEdit(index);
+    }
+
     onDelete = index => {
         const [...items] = this.state.items;
         items.splice(index, 1);
+        this.setState({items});
+    }
+
+    onEdit = index => {
+        const [...items] = this.state.items;
+        items[index].editing = !items[index].editing;
         this.setState({items});
     }
 
@@ -75,13 +96,19 @@ class ListPage extends React.Component {
 
     render(){
         const {items} = this.state;
+        const actions = {
+            onChangeTitleCallback: this.onChangeTitle,
+            onDeleteCallback: this.onDelete,
+            onEditCallback: this.onEdit,
+            onToggleCallback: this.onToggle
+        }
         return (
             <Fragment>
                 <header>
                     <Typography variant='h2'>{mockList.name}</Typography>
                 </header>
                 <section>
-                    <ChaguaList onDeleteCallback={this.onDelete} onToggleCallback={this.onToggle} items={items} />
+                    <ChaguaList actions={actions} items={items} />
                 </section>
             </Fragment>
         );

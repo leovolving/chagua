@@ -10,17 +10,17 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
-const ChaguaList = ({items, onDeleteCallback, onToggleCallback}) => {
+const ChaguaList = ({actions, items}) => {
     const classes = useStyles();
 
     return (
         <List className={classes.root}>
             {items.map((i, j) => (
                 <ChaguaListItem
-                    onDeleteCallback={onDeleteCallback}
-                    onToggleCallback={onToggleCallback}
+                    actions={actions}
                     data={i}
                     index={j}
+                    key={j}
                 />
             ))}
         </List>
