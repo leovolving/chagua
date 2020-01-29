@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import Typography from '@material-ui/core/Typography';
-import Chagua from './Chagua.jsx'
+import Chagua from '../../Chagua.jsx'
 
 export default () => (
     <Fragment>

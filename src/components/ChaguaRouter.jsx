@@ -5,8 +5,8 @@ import {
     Route,
     Link
   } from 'react-router-dom';
-  import Home from './Home.jsx';
-  import List from './List.jsx';
+  import Home from './routes/home/Home.jsx';
+  import List from './routes/list/List.jsx';
 
 const ChaguaRouter = () => (
     <Router>
