@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const ChaguaListItem = ({actions, data, index}) => {
     const {onChangeTitleCallback, onDeleteCallback, onEditCallback, onToggleCallback} = actions;
-    const {editing, enabled, lastSelected, title} = data;
+    const {editing, enabled, lastUsedOn, title} = data;
     const classes = useStyles();
 
     const onDelete = () => onDeleteCallback(index);
@@ -35,8 +35,8 @@ const ChaguaListItem = ({actions, data, index}) => {
     const onChangeTitle = value => onChangeTitleCallback(index, value)
     const onToggle = () => onToggleCallback(index);
 
-    const secondaryText = lastSelected
-        ? `Last selected ${moment(lastSelected).format("MMM D 'YY")}.`
+    const secondaryText = lastUsedOn
+        ? `Last selected ${moment(lastUsedOn).format("MMM D 'YY")}.`
         : 'Never selected.';
 
     const primaryText = editing
