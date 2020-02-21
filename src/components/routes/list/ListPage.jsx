@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import Typography from '@material-ui/core/Typography';
 import ChaguaList from '../../shared/ChaguaList';
-import Selection from '../../shared/Selection';
+import ChaguaButton from '../../shared/ChaguaButton';
 
 const mockList = {
     id: '10',
@@ -137,12 +137,11 @@ class ListPage extends React.Component {
 
     onChoose = () => {
         const [...items] = this.state.items;
-        const activeItemsCount = items
+        const activeItems = items
             .filter(i => i.enabled)
-            .map(() => null) // TO-VERIFY: save memory, remove contents of array for count
-            .length;
+            .map(i => i.title);
 
-        const index = Math.floor((Math.random() * activeItemsCount));
+        const index = Math.floor((Math.random() * activeItems.length));
         const {title} = items[index];
         items[index].lastUsedOn = new Date().toISOString();
         this.setState({items, selection: title});
@@ -180,6 +179,10 @@ class ListPage extends React.Component {
             onToggleCallback: this.onToggle
         }
 
+        const activeItems = items
+            .filter(i => i.enabled)
+            .map(i => i.title);
+
         return (
             <Fragment>
                 <header>
@@ -191,7 +194,7 @@ class ListPage extends React.Component {
                 </section>
 
                 <section>
-                    <Selection onClick={this.onChoose} selection={selection} />
+                    <ChaguaButton items={activeItems} />
                 </section>
             </Fragment>
         );
